@@ -21,4 +21,9 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     minikube.memory = 4096
     minikube.cpus = 2
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/site.yml"
+  end
+
 end

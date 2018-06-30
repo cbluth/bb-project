@@ -52,4 +52,11 @@
   become: true
   become_user: vagrant
   when: kube_check is failed
+
+- name: Enable kube master run all pods 
+  shell: kubectl taint node minikube node-role.kubernetes.io/master:NoSchedule-
+  become: true
+  become_user: vagrant
+  when: kube_check is failed
+  
         

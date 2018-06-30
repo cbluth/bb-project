@@ -1,0 +1,13 @@
+- hosts: all
+  become: True
+  tasks:
+    - name: Create nginx.yml
+      template:
+        src: templates/kubernetes/deployment/nginx.yml
+        dest: /home/vagrant/nginx.yml
+      
+    - name: Create nginx resources
+      shell: kubectl create -f nginx.yml
+      become: true
+      become_user: vagrant
+      

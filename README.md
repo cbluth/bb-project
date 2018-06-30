@@ -10,11 +10,11 @@ Basic - - OK
     - Add dependencies -  docker - OK 
 
  Nginx   
- - Create nginx deployment files on kubebernetes
- - Nginx playbook
-    - Create folder for volume
-    - Create index.html on volume folder
-    - Run kubenernetes yaml for nginx
+ - Create nginx deployment files on kubebernetes -OK
+ - Nginx playbook - OK
+    - Create configmap - OK
+    - Create index.html on configmap - OK
+    - Run kubenernetes yaml for nginx - OK
 
 Tomcat
   - Create dockerfile for tomcat container
@@ -39,3 +39,14 @@ Documentation
     - nginx
     - tomcat
   - Print jenkins url
+
+
+-----
+Running:
+ $ vagrant up
+
+Test Nginx:
+  $ curl 192.168.56.11:31514
+
+Test Tomcat:
+  $ 

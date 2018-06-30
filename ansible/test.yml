@@ -1,0 +1,14 @@
+- hosts: all
+  become: True
+  tasks:
+    - name: Wait nginx
+      wait_for:
+        port: 31514
+        delay: 5
+
+    - name: Create nginx.yml
+      command: curl localhost:31514
+      register: test_nginx
+
+    - debug:
+        var: test_nginx.stdout_lines
