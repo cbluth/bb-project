@@ -1,13 +1,13 @@
 # bb-project
 ## Skeleton
-Basic
+Basic - - OK 
  - Create Vagrantfile for the test node - OK
 
- Minikube
- - Create minikube role
- - Create minikube playbook
- - Create common role
-    - Add dependencies -  docker
+ Minikube - - OK 
+ - Create minikube role - OK 
+ - Create minikube playbook - OK 
+ - Create common role - OK 
+    - Add dependencies -  docker - OK 
 
  Nginx   
  - Create nginx deployment files on kubebernetes

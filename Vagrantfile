@@ -3,8 +3,6 @@
 
 VAGRANT_API_VERSION = 2
 
-
-
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.ssh.insert_key = false
   config.vm.synced_folder '.', '/vagrant', disabled: true
