@@ -1,0 +1,24 @@
+- name: Install base packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - docker.io
+
+- name: Enable and start docker
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Add kubectl signing key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add kubectl repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+

@@ -1,7 +1,7 @@
 # bb-project
 ## Skeleton
 Basic
- - Create Vagrantfile for the test node
+ - Create Vagrantfile for the test node - OK
 
  Minikube
  - Create minikube role

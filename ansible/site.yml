@@ -1,0 +1,5 @@
+- name: Include common playbook
+  import_playbook: common.yml
+
+- name: Include minikube playbook
+  import_playbook: kubernetes.yml

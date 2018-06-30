@@ -1,0 +1,55 @@
+- name: Install kubeadm packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - kubeadm
+
+- name: Remove swapfile from /etc/fstab
+  mount:
+    name: swap
+    fstype: swap
+    state: absent
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Check if kubernetes it's created
+  shell: kubectl get nodes
+  register: kube_check
+  ignore_errors: true
+  become: true
+  become_user: vagrant
+
+- name: Create kubernetes master
+  shell: kubeadm init --pod-network-cidr=10.244.0.0/16
+  become: true
+  when: kube_check is failed
+
+- name: Create .kube folder
+  file:
+    name: "{{ item }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+  with_items:
+    - /home/vagrant/.kube
+
+- name: Copy a "kubeadm" file on the remote machine
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "{{ item }}"
+    remote_src: yes
+    owner: vagrant
+    group: vagrant
+  become: true
+  with_items:
+    - /home/vagrant/.kube/config
+
+- name: Create CNI 
+  shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
+  become: true
+  become_user: vagrant
+  when: kube_check is failed
+        
