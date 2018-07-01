@@ -49,17 +49,17 @@ Documentation
   - 2 VCPUs
   - 4Gb of Ram
 
-## Running:
-# To run the project
+# Running:
+## To run the project
   $ vagrant up
 
-#To test Nginx
+##To test Nginx
   $ curl 192.168.56.11:31514
 
-# To test Tomcat
+## To test Tomcat
   $ curl 192.168.56.11:31515/sample/
 
-# To access Jenkins
+## To access Jenkins
   URL: http://192.168.56.11:31516
 
 
