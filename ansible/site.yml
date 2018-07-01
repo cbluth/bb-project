@@ -7,8 +7,11 @@
 - name: Include nginx deployment playbook
   import_playbook: nginx-deployment.yml
 
+- name: Include tomcat deployment playbook
+  import_playbook: tomcat-deployment.yml
+
 - name: Include jenkins deployment playbook
   import_playbook: jenkins-deployment.yml
 
-- name: Include tests playbook
+- name: Include test
   import_playbook: test.yml

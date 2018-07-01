@@ -40,7 +40,7 @@
     - name: Wait jenkins
       wait_for:
         port: 31516
-        delay: 5
+        delay: 60
 
     - name: Get jenkins-cli
       get_url:
