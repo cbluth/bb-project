@@ -53,7 +53,7 @@ Documentation
 ## To run the project
   $ vagrant up
 
-##To test Nginx
+## To test Nginx
   $ curl 192.168.56.11:31514
 
 ## To test Tomcat
