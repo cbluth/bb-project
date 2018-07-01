@@ -6,6 +6,7 @@ data:
   helloworld: |-
     Hello world
 kind: ConfigMap
+
 ---
 apiVersion: apps/v1
 kind: Deployment

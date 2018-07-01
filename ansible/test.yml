@@ -11,16 +11,28 @@
         port: 31515
         delay: 5
 
-    - name: Create nginx.yml
+    - name: Wait jenkins
+      wait_for:
+        port: 31516
+        delay: 5
+
+    - name: Test nginx
       command: curl localhost:31514
       register: test_nginx
 
     - debug:
         var: test_nginx.stdout_lines
 
-    - name: Create tomcat.yml
+    - name: Test tomcat
       command: curl localhost:31515/sample/
       register: test_tomcat
 
     - debug:
         var: test_tomcat.stdout_lines
+
+    - name: Test jenkins
+      command: curl localhost:31516
+      register: test_jenkins
+
+    - debug:
+        var: test_jenkins.stdout_lines

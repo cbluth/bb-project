@@ -1,0 +1,52 @@
+
+- hosts: all
+  become: True
+  tasks:
+
+    - name: Create docker images folder
+      file:
+        name: "{{ item }}"
+        state: directory
+        owner: vagrant
+        group: vagrant
+      with_items:
+        - /home/vagrant/docker_images/jenkins-sample
+        - /home/vagrant/jenkins
+
+    - name: Create Jenkins Dockerfile
+      template:
+        src: templates/jenkins/Dockerfile
+        dest: /home/vagrant/docker_images/jenkins-sample/Dockerfile
+
+    - name: Create jenkins sample job
+      template:
+        src: templates/jenkins/sample.xml
+        dest: /home/vagrant/jenkins/sample.xml
+
+    #Not using docker image module to avoid more requisites
+    - name: Build jenkins with sample image
+      shell: cd /home/vagrant/docker_images/jenkins-sample/ && docker build -t jenkins-sample .
+
+    - name: Create jenkins.yml
+      template:
+        src: templates/kubernetes/deployment/jenkins.yml
+        dest: /home/vagrant/jenkins.yml
+      
+    - name: Create jenkins resources
+      shell: kubectl create -f jenkins.yml
+      become: true
+      become_user: vagrant
+
+    - name: Wait jenkins
+      wait_for:
+        port: 31516
+        delay: 5
+
+    - name: Get jenkins-cli
+      get_url:
+        url: 'http://192.168.56.11:31516/jnlpJars/jenkins-cli.jar'
+        dest: /home/vagrant/jenkins
+      
+    - name: Create sample job
+      shell: java -jar /home/vagrant/jenkins/jenkins-cli.jar -s http://192.168.56.11:31516/ create-job sample-job < /home/vagrant/jenkins/sample.xml
+

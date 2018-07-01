@@ -11,15 +11,15 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     sudo pkill apt || true
   SHELL
 
-  config.vm.define 'minikube' do |minikube|
-    minikube.vm.hostname = 'minikube'
-    minikube.vm.box = 'ubuntu/bionic64'
-    minikube.vm.network "private_network", ip: "192.168.56.11"
+  config.vm.define 'kube' do |kube|
+    kube.vm.hostname = 'kube'
+    kube.vm.box = 'ubuntu/bionic64'
+    kube.vm.network "private_network", ip: "192.168.56.11"
   end
 
-  config.vm.provider "virtualbox" do |minikube|
-    minikube.memory = 4096
-    minikube.cpus = 2
+  config.vm.provider "virtualbox" do |kube|
+    kube.memory = 4096
+    kube.cpus = 2
   end
 
   config.vm.provision "ansible" do |ansible|

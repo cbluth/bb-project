@@ -5,6 +5,7 @@
   with_items:
     - apt-transport-https
     - docker.io
+    - openjdk-8-jre
 
 - name: Enable and start docker
   systemd:

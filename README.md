@@ -1,9 +1,9 @@
 # bb-project
 ## Skeleton:
-Basic - - OK 
+Basic -  OK 
  - Create Vagrantfile for the test node - OK
 
- Kuberntes - - OK 
+ Kuberntes - OK 
  - Create kubernetes role - OK 
  - Create kubernetes playbook - OK 
  - Create common role - OK 
@@ -17,43 +17,49 @@ Basic - - OK
     - Run kubenernetes yaml for nginx - OK
 
 Tomcat - OK
-  - Create dockerfile for tomcat container
-        - jdk8 based - OK
-        - Download sample from - https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/ - OK
-        - Build image - OK
+  - Create dockerfile for tomcat container OK
+      - jdk8 based - OK
+      - Download sample from https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/ - OK
+      - Build image - OK
   - Create tomcat deployment file on kubernetes - OK
   - Tomcat playbook - OK
     - Build container - OK
     - Run kubernetes yaml for tomcat - OK
 
 Jenkins
-   - Run a jenkins receipt to install jenkins in a kubernetes
-   - Create a job remotely
+   - Run a jenkins receipt to install jenkins in a kubernetes - OK
+   - Create a job remotely - OK
 
 Documentation
   - README
   - Requisites - OK
   - Comments on playbooks
-  - Curls at the end
-    - nginx
-    - tomcat
-  - Print jenkins url
+  - Curls at the end - OK
+    - nginx - OK
+    - tomcat - OK
+  -  Jenkins url
 
 ## Requisites:
-ansible 2.5 or later
-Vagrant 2.1 or later
-Virtualbox 5.2 or later
-2 VCPUs
-4Gb of Ram
+- ansible 2.5 or later
+- Vagrant 2.1 or later
+- Virtualbox 5.2 or later
+- 2 VCPUs
+- 4Gb of Ram
 
 
 
 ## Running:
- $ vagrant up
+# To run the project
+  $ vagrant up
 
-Test Nginx:
+#To test Nginx
   $ curl 192.168.56.11:31514
 
-Test Tomcat:
+# To test Tomcat
   $ curl 192.168.56.11:31515/sample/
+
+# To access Jenkins
+  URL: 192.168.56.11:31516
+
+
 
