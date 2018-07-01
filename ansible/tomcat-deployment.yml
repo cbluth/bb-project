@@ -1,0 +1,35 @@
+
+- hosts: all
+  become: True
+  tasks:
+
+    - name: Create docker images folder
+      file:
+        name: "{{ item }}"
+        state: directory
+        owner: vagrant
+        group: vagrant
+      with_items:
+        - /home/vagrant/docker_images/tomcat-sample
+
+    - name: Create tomcat Dockerfile
+      template:
+        src: templates/tomcat/Dockerfile
+        dest: /home/vagrant/docker_images/tomcat-sample/Dockerfile
+
+    #Not using docker image module to avoid more requisites
+    - name: Build tomcat with sample image
+      shell: cd /home/vagrant/docker_images/tomcat-sample/ && docker build -t tomcat-sample .
+
+    - name: Create tomcat.yml
+      template:
+        src: templates/kubernetes/deployment/tomcat.yml
+        dest: /home/vagrant/tomcat.yml
+      
+    - name: Create tomcat resources
+      shell: kubectl create -f tomcat.yml
+      become: true
+      become_user: vagrant
+      
+
+      

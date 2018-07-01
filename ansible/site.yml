@@ -6,3 +6,6 @@
 
 - name: Include nginx deployment playbook
   import_playbook: nginx-deployment.yml
+
+- name: Include tests playbook
+  import_playbook: test.yml
